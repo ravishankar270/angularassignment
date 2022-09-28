@@ -1,0 +1,14 @@
+.sign-up-link {
+    font-size: 1.2rem;
+    margin-left: 8px;
+}
+.login{
+    padding: 30px;
+    
+}
+.signup{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    margin-top: 10px;
+}

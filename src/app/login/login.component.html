@@ -1,0 +1,23 @@
+
+<form class="login">
+    <div class="mb-3">
+      <label  for="exampleInputEmail1" class="form-label">Email address</label>
+      <input required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ngModel type="email" (change)="log(email.viewModel)" #email="ngModel" name="email"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div  *ngIf="email.touched">
+        <div class="alert alert-danger" *ngIf="email.errors?.[ 'pattern']" >Invalid Email</div>
+        <div class="alert alert-danger" *ngIf="!email.valid">Email Required</div>
+    </div>
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input required ngModel minlength="6"  maxlength="8" #password="ngModel" name="password" type="password" class="form-control" id="exampleInputPassword1">
+      <div  *ngIf="password.touched">
+        <div class="alert alert-danger" *ngIf="!password.valid">Invalid Password</div>
+    </div>
+    <div id="emailHelp" class="form-text">Password should be of length 6-8 </div>
+    </div>
+    <button  type="submit" [disabled]="!email.errors?.['pattern']  && !password.valid"  (click)="login(email,password)" class="btn btn-primary">Login</button>
+    <span class="signup">New to the platform <a href="/signup">Sign UP!</a> </span>
+    
+  </form>

@@ -1,0 +1,46 @@
+
+  <div class="mt-3">
+    <div class="row">
+        <div class="col-lg-4"><h4 >List of Todos</h4></div>
+        
+        
+    </div>
+    <br>
+  
+        
+  
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Srno</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th style="text-align: center;">Actions</th>
+        </tr>
+        
+            
+    </thead>
+        
+        
+    <tbody>
+        <ng-container *ngIf="myTodos.length!=0;else block">
+        
+            <tr  *ngFor="let  todo of myTodos;index as i">
+                <th >{{i+1}}</th>
+                <td >{{todo.title}}</td>
+                <td >{{todo.desc}}</td>
+                <td style="text-align: center;">
+                    <button type="button" style="margin: 10px;" (click)="update(i)"  class="btn btn-outline-secondary btn-sm"><a style="text-decoration:none;" >Update</a></button>
+                    <button type="button" style="margin: 10px;" (click)="delete(i)" class="btn btn-outline-danger btn-sm"><a style="text-decoration:none;" >Delete</a></button>
+                </td>
+            </tr>
+        </ng-container>
+        <ng-template #block>
+            <div style="width: 100%;" class="alert alert-danger" role="alert">
+                No Todos
+              </div>
+        </ng-template>
+    </tbody> 
+        
+    </table>
+  </div>

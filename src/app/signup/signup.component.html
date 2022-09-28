@@ -1,0 +1,41 @@
+<form class="login">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input required minlength="1" maxlength="8" ngModel type="text" #name="ngModel" name="name" class="form-control"
+      id="name" aria-describedby="emailHelp">
+   
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ngModel type="email" #email="ngModel" name="email"
+      class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div *ngIf="email.touched">
+      <div class="alert alert-danger" *ngIf="email.errors?.['pattern']">Invalid Email</div>
+      <div class="alert alert-danger" *ngIf="!email.valid">Email Required</div>
+    </div>
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input required ngModel minlength="6" maxlength="8" #password="ngModel" name="password" type="password"
+      class="form-control" id="exampleInputPassword1">
+    <div *ngIf="password.touched">
+      <div class="alert alert-danger" *ngIf="!password.valid">Invalid Password</div>
+    </div>
+    <div id="emailHelp" class="form-text">Password should be of length 6-8 </div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+    <input required ngModel minlength="6" maxlength="8" #cpassword="ngModel" name="cpassword" type="password"
+      class="form-control" id="exampleInputPassword1">
+    <div *ngIf="cpassword.touched">
+      <div class="alert alert-danger" *ngIf="!cpassword.valid">Invalid Password</div>
+      <div class="alert alert-danger" *ngIf="cpassword.viewModel!=password.viewModel">Password does not match</div>
+    </div>
+  </div>
+  <button type="submit"
+    [disabled]="email.errors?.['pattern']  || !password.valid  || cpassword.viewModel!=password.viewModel || !name.valid "
+    (click)="signUp(name.viewModel,email.viewModel,password.viewModel)" class="btn btn-primary">Sign Up</button>
+  <span class="signup">Already have an account<a href="/signup">Sign In!</a> </span>
+
+</form>
